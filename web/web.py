@@ -1,4 +1,4 @@
-from flask import Flask, Response
+from flask import Flask, Response, render_template
 from markupsafe import escape
 
 app1 = Flask(__name__)
@@ -13,6 +13,10 @@ def hello_world():
             return Response(content, mimetype="text/plain")
     except:
         return "404! Could not read /server.txt file!"
+
+@app1.route('/test', methods=['GET', 'POST'])
+def test():
+    return render_template('/test.html')
 
 @app1.route('/path/<path:subpath>')
 def show_subpath(subpath):
